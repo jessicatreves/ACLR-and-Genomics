@@ -1,0 +1,50 @@
+# 1. Load the metafor package
+if(!require(metafor)) install.packages("metafor")
+library(metafor)
+
+# 2. Input your extracted allele counts for rs699947 (A vs C)
+# ai/bi = Case Allele A/C counts; ci/di = Control Allele A/C counts
+data_rs699947 <- data.frame(
+  author = c(Calò et al. (2024), Lulińska-Kuklik et al. (2018), Massidda et al. (2023), Posthumus et al. (2009), Rodas et al. (2022), Seong et al. (2024), Sivertsen et al. (2019), Stępień-Słodkowska et al. (2015b), Zhao et al. (2020)),
+  case_C = c(114, 69, 30, 44, 6, 46),
+  case_T = c(22, 199, 138, 108, 8, 74),
+  control_C = c(72, 132, 35, 112, 4, 252),
+  control_T = c(12, 290, 107, 316, 30, 360)
+)
+
+ Calò et al. (2024) 
+ Lulińska-Kuklik et al. (2018)
+ Massidda et al. (2023)
+ Posthumus et al. (2009)
+ Rodas et al. (2022) 
+ Seong et al. (2024) 
+ Sivertsen et al. (2019) 
+ Stępień-Słodkowska et al. (2015b)
+ Zhao et al. (2020) 
+
+
+
+
+# 3. Calculate effect sizes (log Odds Ratio)
+res_data <- escalc(measure="OR", ai=case_C, bi=case_A, ci=control_C, di=control_A, data=data_rs699947)
+
+# 4. Perform Random-Effects Meta-Analysis (Method: REML)
+model <- rma(yi, vi, data=res_data, method="REML")
+
+# 5. View the statistical summary
+# Check the 'Estimated Result' for the Pooled OR and 'I^2' for heterogeneity
+print(summary(model))
+
+# 6. Generate the Forest Plot for your presentation
+forest(model, slab=res_data$author, header=TRUE, xlab="Odds Ratio (95% CI)",
+       atransf=exp, digits=2, main="VEGFA rs699947 and ACL Injury Risk")
+
+
+
+Notes:
+B1=C
+B2=T
+
+Females:
+Posthumus 2009
+Rodas 
