@@ -2,14 +2,14 @@
 if(!require(metafor)) install.packages("metafor")
 library(metafor)
 
-# 2. Input your extracted allele counts for rs699947 (A vs C)
-# ai/bi = Case Allele A/C counts; ci/di = Control Allele A/C counts
+# 2. Input your extracted allele counts for 13946 (C vs T)
+# ai/bi = Case Allele C/T counts; ci/di = Control Allele C/T counts
 data_rs699947 <- data.frame(
-  author = c(Posthumus et al. (2009), Rodas et al. (2022), Sivertsen et al. (2019)),
-  case_C = c(),
-  case_T = c(),
-  control_C = c(),
-  control_T = c()
+  author = c(Calò et al. (2024), Lulińska-Kuklik et al. (2018), Massidda et al. (2023), Posthumus et al. (2009), Rodas et al. (2022), Seong et al. (2024), Sivertsen et al. (2019), Stępień-Słodkowska et al. (2015b), Zhao et al. (2020)),
+  case_C = c(114, 69, 30, 44, 6, 46, 53, 81, 79),
+  case_T = c(22, 199, 138, 108, 8, 74, 185, 195, 123),
+  control_C = c(72, 132, 35, 112, 4, 252, 110, 92),
+  control_T = c(12, 290, 107, 316, 30, 360, 1098, 256, 128)
 )
 
 # 3. Calculate effect sizes (log Odds Ratio)
@@ -24,9 +24,9 @@ print(summary(model))
 
 # 6. Generate the Forest Plot for your presentation
 forest(model, slab=res_data$author, header=TRUE, xlab="Odds Ratio (95% CI)",
-       atransf=exp, digits=2, main="VEGFA rs699947 and ACL Injury Risk")
+       atransf=exp, digits=2, main="COL5A1 13946 and ACL Injury Risk")
 
-
+Females:
 Posthumus 2009
 Rodas 
 Sivertsen (all female anyway) 
