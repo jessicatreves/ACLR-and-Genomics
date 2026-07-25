@@ -1,0 +1,27 @@
+# 1. Load the metafor package
+if(!require(metafor)) install.packages("metafor")
+library(metafor)
+
+# 2. Input your extracted allele counts for rs970547 (A vs G)
+# ai/bi = Case Allele A/G counts; ci/di = Control Allele A/G counts
+data_rs970547 <- data.frame(
+  author = c("Ficek et al. (2014)", "John et al. (2016)", "Massida et al. (2023)", "O'Connell et al. (2015)", "Posthumus et al. (2019)", "Seong et al. (2024)", "Sivertsen et al. (2019)", "Zhao et al. (2020)"),
+  case_A = c(149, 39, 94, 470, 208, 75, 171, 138),
+  case_G = c(33, 49, 76, 130, 46, 43, 65, 64),
+  control_A = c(225, 32, 97, 578, 328, 437, 1091, 137),
+  control_G = c(61, 68, 85, 160, 96, 215, 373, 91)
+)
+
+# 3. Calculate effect sizes (log Odds Ratio)
+res_data <- escalc(measure="OR", ai=case_A, bi=case_G, ci=control_A, di=control_G, data=data_rs970547)
+
+# 4. Perform Random-Effects Meta-Analysis (Method: REML)
+model <- rma(yi, vi, data=res_data, method="REML")
+
+# 5. View the statistical summary
+# Check 'Estimated Result' for the Pooled OR and 'I^2' for heterogeneity
+print(summary(model))
+
+# 6. Generate the Forest Plot for your presentation
+forest(model, slab=data_rs970547$author, header=TRUE, xlab="Odds Ratio (95% CI)",
+       atransf=exp, digits=2, main="COL12A1 rs970547 and ACL Injury Risk")
