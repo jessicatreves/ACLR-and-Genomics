@@ -1,3 +1,4 @@
+Male and Female
 # 1. Load the metafor package
 if(!require(metafor)) install.packages("metafor")
 library(metafor)
@@ -8,7 +9,7 @@ data_rs699947 <- data.frame(
   author = c(Calò et al. (2024), Lulińska-Kuklik et al. (2018), Massidda et al. (2023), Posthumus et al. (2009), Rodas et al. (2022), Seong et al. (2024), Sivertsen et al. (2019), Stępień-Słodkowska et al. (2015b), Zhao et al. (2020)),
   case_C = c(114, 69, 30, 44, 6, 46, 53, 81, 79),
   case_T = c(22, 199, 138, 108, 8, 74, 185, 195, 123),
-  control_C = c(72, 132, 35, 112, 4, 252, 110, 92),
+  control_C = c(72, 132, 35, 112, 4, 380, 110, 92),
   control_T = c(12, 290, 107, 316, 30, 360, 1098, 256, 128)
 )
 
