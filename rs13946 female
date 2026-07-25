@@ -5,7 +5,7 @@ library(metafor)
 # 2. Input your extracted allele counts for 13946 (C vs T)
 # ai/bi = Case Allele C/T counts; ci/di = Control Allele C/T counts
 data_rs13946 <- data.frame(
-  author = c(Posthumus et al. (2009), Rodas et al. (2022), Sivertsen et al. (2019)),
+  author = c("Posthumus et al. (2009)", "Rodas et al. (2022)", "Sivertsen et al. (2019)"),
   case_C = c(22, 6, 53),
   case_T = c(54, 8, 185),
   control_C = c(47, 4, 380),
