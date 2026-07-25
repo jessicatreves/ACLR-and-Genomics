@@ -6,10 +6,10 @@ library(metafor)
 # ai/bi = Case Allele C/T counts; ci/di = Control Allele C/T counts
 data_rs699947 <- data.frame(
   author = c(Posthumus et al. (2009), Rodas et al. (2022), Sivertsen et al. (2019)),
-  case_C = c(22, 6),
-  case_T = c(54, 8),
-  control_C = c(47, 4),
-  control_T = c(117, 30)
+  case_C = c(22, 6, 53),
+  case_T = c(54, 8, 185),
+  control_C = c(47, 4, 380),
+  control_T = c(117, 30, 1098)
 )
 
 # 3. Calculate effect sizes (log Odds Ratio)
@@ -25,14 +25,3 @@ print(summary(model))
 # 6. Generate the Forest Plot for your presentation
 forest(model, slab=res_data$author, header=TRUE, xlab="Odds Ratio (95% CI)",
        atransf=exp, digits=2, main="COL5A1 13946 and ACL Injury Risk")
-
-Females:
-Posthumus 2009
-Rodas 
-Sivertsen (all female anyway) 
-
-
- 53
-185
-252 - 380
-1090
